@@ -74,24 +74,11 @@ Personagem* Simulador::proximoPersonagem(vector<Personagem*> equipe)
     {
         return nullptr;
     }
-
-    int contador = 0;
-    for(int i = 0; i < tamanho; i++)
-    {
-        if (equipe[contador]->getVida() <= 0)
-        {
-            contador++;
-        }
-    }
     int proximo;
-    if(contador<tamanho){
-        do{
-            proximo = std::rand() % tamanho;
-        } while (equipe[proximo]->getVida() == 0);
+    do{
+        proximo = std::rand() % tamanho;
+    } while (equipe[proximo]->getVida() <= 0);
         return equipe[proximo];
-    }else{
-        return nullptr;
-    }
 }
 
 int Simulador::criarCombate(Personagem* personagem1, Personagem* personagem2)
